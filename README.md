@@ -1,7 +1,3 @@
-Here’s a **cleaned-up and structured `README.md`** file for your WhatsApp Business Messaging Platform frontend:
-
----
-
 # 📱 WhatsApp Business Messaging Platform – Frontend
 
 This is the frontend application for a **WhatsApp Cloud API-based Business Messaging Platform**. It enables authenticated users to chat with contacts, send and receive real-time messages, and manage conversations efficiently.
