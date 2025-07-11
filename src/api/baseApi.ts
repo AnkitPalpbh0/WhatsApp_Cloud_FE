@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // Optional: Your base URL from .env (Vite uses VITE_ prefix)
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
-
+const BASE_URL ='https://waba.tools'
 export const baseApi = createApi({
   reducerPath: 'api', // slice name in Redux
   baseQuery: fetchBaseQuery({

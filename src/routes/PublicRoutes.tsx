@@ -9,7 +9,7 @@ type Props = {
 const PublicRoute = ({ children }: Props) => {
   const { user } = useAuth();
   console.log(user, "user");
-  return user ? <>{children}</> : <Navigate to="/login" replace />;
+  return user===null ? <>{children}</> : <Navigate to="/login" replace />;
 };
 
 export default PublicRoute;
