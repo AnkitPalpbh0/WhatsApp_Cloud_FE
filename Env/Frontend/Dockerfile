@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
@@ -17,4 +17,4 @@ RUN npm run build
 RUN npm install -g serve
 
 # Serve the built app
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-s", "dist"]
