@@ -3,8 +3,6 @@ import Signup from "../pages/Signup";
 import NotFound from "../pages/NotFound";
 // import ChatPage from "../components/Chat/ChatLayout";
 import Login from "../pages/login";
-import PublicRoute from "./PublicRoutes";
-import PrivateRoute from "./PrivateRoutes";
 import Chat from "../pages/chat";
 
 const AppRoutes = () => {
@@ -15,27 +13,21 @@ const AppRoutes = () => {
       <Route
         path="/login"
         element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
+          <Login />
         }
       />
 
       <Route
         path="/signup"
         element={
-          <PublicRoute>
-            <Signup />
-          </PublicRoute>
+          <Signup />
         }
       />
 
       <Route
         path="/chat"
         element={
-          <PrivateRoute>
-            <Chat />
-          </PrivateRoute>
+          <Chat />
         }
       />
 
