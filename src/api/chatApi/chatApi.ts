@@ -11,33 +11,54 @@ export const chatApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // ✅ Delete a Message by ID
-    deleteMessage: builder.mutation<void, { messageId: string }>({
-      query: ({ messageId }) => ({
-        url: `/api/messages/${messageId}`,
-        method: "DELETE",
+    sendMediaMessage: builder.mutation<
+      void,
+      {
+        mediaUrl: string;
+        to: string;
+        mimeType: string;
+        type: "image" | "video" | "document";
+        caption: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/api/messages/send-media",
+        method: "POST",
+        body,
       }),
     }),
 
     // ✅ Get All Chats of a User
-    getChats: builder.query<{ id: number; chatId: number }[], { userId: any }>({
+    getChats: builder.query<
+      { id: number; chatId: number }[],
+      { userId: string }
+    >({
       query: ({ userId }) => `/api/chats/${userId}`,
     }),
 
-    // ✅ Get Messages of a Chat
+    // ✅ Get Messages of a Chat (Updated Endpoint)
     getMessages: builder.query<
       {
         id: number;
         messageId: string;
         messageType: string;
         content: string;
-        mediaUrl: string | null;
+        mediaUrl: string;
+        mimeType: string; // ✅ Add this line
         timestamp: string;
         status: string;
       }[],
       { id: string | number }
     >({
       query: ({ id }) => `/api/chats/messages/${id}`,
+    }),
+
+    // ✅ Delete a Message by ID
+    deleteMessage: builder.mutation<void, { messageId: string }>({
+      query: ({ messageId }) => ({
+        url: `/api/messages/${messageId}`,
+        method: "DELETE",
+      }),
     }),
 
     // ✅ Delete a Chat by ID
@@ -52,6 +73,7 @@ export const chatApi = baseApi.injectEndpoints({
 
 export const {
   useSendTextMutation,
+  useSendMediaMessageMutation,
   useDeleteMessageMutation,
   useGetChatsQuery,
   useGetMessagesQuery,

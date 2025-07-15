@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.679.0",
+    "@aws-sdk/s3-request-presigner": "^3.697.0",
     "@reduxjs/toolkit": "^2.8.2",
     "jwt-decode": "^4.0.0",
     "mui": "^0.0.1",

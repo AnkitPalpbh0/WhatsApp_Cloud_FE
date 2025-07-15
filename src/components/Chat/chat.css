@@ -307,14 +307,78 @@
   margin-top: 4px;
 }
 
-.chat-tick {
-  font-size: 0.9rem;
+.chat-bubble {
+  padding: 10px;
+  max-width: 70%;
+  margin: 8px;
+  border-radius: 8px;
+  position: relative;
+  background-color: #f1f1f1;
 }
 
-.tick-grey {
-  color: #a0a0a0;
+.chat-bubble.right {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+}
+
+.chat-bubble.left {
+  align-self: flex-start;
+  background-color: #fff;
+}
+
+.chat-meta {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 10px;
+  color: #999;
+}
+
+.chat-tick {
+  margin-left: 5px;
 }
 
 .tick-blue {
+  color: #34b7f1;
+}
+
+.tick-grey {
+  color: grey;
+}
+
+.chat-media {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.chat-document-link {
+  display: inline-block;
+  margin-top: 5px;
+  font-weight: 500;
   color: #007bff;
+  text-decoration: none;
+}
+
+.chat-preview {
+  background-color: #f0f0f0;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 6px;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.preview-body {
+  margin-top: 10px;
+}
+
+.preview-media {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
 }
