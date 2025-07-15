@@ -28,16 +28,33 @@ jobs:
       - run:
           name: Install AWS CLI
           command: |
-            apk add --no-cache py3-pip
+            apk add --no-cache py3-pip jq
             pip3 install awscli
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_SECRET_KEY
           aws-region: AWS_REGION
+          
       - run:
-          name: docker build
+          name: Fetch secrets and build Docker image
           command: |
-            docker build -t whatsapp-frontend -f Env/Frontend/Dockerfile .
+            echo "Fetching secrets from AWS Secrets Manager"
+            SECRETS=$(aws secretsmanager get-secret-value \
+              --secret-id whatsapp \
+              --query SecretString \
+              --output text)
+
+            echo "Secrets fetched"
+
+            eval $(echo "$SECRETS" | jq -r 'to_entries | map("export \(.key)=\"\(.value|tostring)\"") | .[]')
+            docker build -t whatsapp-frontend \
+            --build-arg VITE_API_BASE_URL=$VITE_API_BASE_URL \
+            --build-arg VITE_S3_ACCESS_KEY=$VITE_S3_ACCESS_KEY \
+            --build-arg VITE_S3_SECRET_KEY=$VITE_S3_SECRET_KEY \
+            --build-arg VITE_S3_REGION_NAME=$VITE_S3_REGION_NAME \
+            --build-arg VITE_S3_BUCKET=$VITE_S3_BUCKET \
+            --build-arg VITE_S3_BASE_URL=$VITE_S3_BASE_URL \
+            -f Env/Frontend/Dockerfile .
       - run:
           name: push
           command: |
